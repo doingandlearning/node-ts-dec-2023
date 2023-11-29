@@ -10,6 +10,8 @@ Refine the Node.js server by completing the refactoring process started earlier 
 
 Before you start, run `npm install` to install the dependencies used in the project.
 
+Run your server using `tsx starter/server.ts`. You'll need to have tsx installed globally (`npm i -g tsx`) or in this project (`npm i tsx`).
+
 #### Tasks:
 
 1. **Complete the Refactoring**:
