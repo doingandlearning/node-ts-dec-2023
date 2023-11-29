@@ -16,7 +16,8 @@ export const handleAbout = (req: IncomingMessage, res: ServerResponse) => {
 };
 
 export const handleContact = (req: IncomingMessage, res: ServerResponse) => {
-  // Implementation of contact handling...
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.end("This is a test!");
 };
 
 // Add more handlers as needed...
