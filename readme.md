@@ -18,8 +18,6 @@
 | 3.30 - 4.30 | Session 4 | 
 
 
-
-
 ## Day 1: Build an API with Core Node modules
 
 - Introduction
