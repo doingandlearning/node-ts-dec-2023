@@ -8,6 +8,8 @@ Refine the Node.js server by completing the refactoring process started earlier 
 - Familiarity with JavaScript or TypeScript.
 - Node.js environment set up for development.
 
+Before you start, run `npm install` to install the dependencies used in the project.
+
 #### Tasks:
 
 1. **Complete the Refactoring**:
