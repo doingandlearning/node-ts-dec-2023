@@ -13,6 +13,10 @@
     - Under "Remote Target", click on "inspect" for the `calculator.js` process.
     - The Chrome DevTools will open. Use the "Resume script execution" (F8) to continue until the debugger statement or error is encountered.
 
+2a. **Using VSCode**
+  - Cmd-Shift-P -> Debug: Attach to Node Process
+  - Select the process
+
 3. **Debugging**:
     - In DevTools, locate the line where subtraction is mistakenly used instead of addition.
     - Modify the line to use the correct operation.
