@@ -30,10 +30,10 @@
 
 - Node.js Module System
 - Debugging with Node
-- Node.js testing
-- Events in Node
 - Restful Services
 - Express
+- Node.js testing
+- Events in Node
 
 ## Day 3: Refactor API to have a persistent backend
 
