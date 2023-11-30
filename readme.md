@@ -32,12 +32,11 @@
 - Debugging with Node
 - Restful Services
 - Express
-- Node.js testing
 - Events in Node
+- Node.js testing
 
 ## Day 3: Refactor API to have a persistent backend
 
 - Buffers and Streams
 - Error handling
-- Interacting with the file system
 - Node.js and Databases

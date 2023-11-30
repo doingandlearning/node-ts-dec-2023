@@ -47,6 +47,8 @@ const router = Router();
 
 router.post('/', createTask);
 router.get('/', getAllTasks);
+
+// router.route('/').get(getAllTasks).post(createTask)
 router.get('/:id', getTaskById);
 router.put('/:id', updateTask);
 router.delete('/:id', deleteTask);
