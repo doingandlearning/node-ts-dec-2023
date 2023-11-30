@@ -10,3 +10,4 @@ function goodbye(name) {
     console.log(`Goodbye ${name}`);
 }
 exports.default = goodbye;
+//# sourceMappingURL=exports.js.map

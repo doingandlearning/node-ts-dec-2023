@@ -27,9 +27,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pino_1 = __importDefault(require("pino"));
-const exports_1 = __importStar(require("./exports"));
+const exports_js_1 = __importStar(require("./exports.js"));
 const logger = (0, pino_1.default)();
 logger.info("Here I am!");
-(0, exports_1.greeting)("Gomathi!");
-logger.warn(exports_1.PI);
-(0, exports_1.default)("Paul");
+(0, exports_js_1.greeting)("Gomathi!");
+logger.warn(exports_js_1.PI);
+(0, exports_js_1.default)("Paul");
+//# sourceMappingURL=index.js.map

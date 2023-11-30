@@ -1,7 +1,6 @@
 const logger = require("pino")();
 const { greeting } = require("./exports")
 
-//     {}  = {}
 
 logger.info("Hello")
 
