@@ -3,6 +3,12 @@ import { User } from "./users.model";
 
 const users: User[] = [];
 
+export class NotFound extends Error {
+  constructor(name: string, public resource: string) {
+    super(name);
+  }
+}
+
 export function getAllUsers(req: Request, res: Response) {
   try {
     res.send(users);
@@ -12,9 +18,10 @@ export function getAllUsers(req: Request, res: Response) {
   }
 }
 
-export function createNewUser(req: Request, res: Response) {
+export function createNewUser(req: Request, res: Response, next) {
   try {
     const user: User = req.body;
+    // throw Error("Blah");
     if (!user.location || !user.name) {
       return res
         .status(400)
@@ -25,16 +32,17 @@ export function createNewUser(req: Request, res: Response) {
     res.status(201).json(user);
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: "Something went wrong" });
+    next(error);
+    // res.status(400).json({ message: "Something went wrong" });
   }
 }
 
-export function getUserById(req: Request, res: Response) {
+export function getUserById(req: Request, res: Response, next) {
   try {
     const user = users.find((u) => u.id === parseInt(req.params.id));
 
     if (!user) {
-      res.status(404).json({ message: "User not found" });
+      return next(new NotFound("not found", "user"));
     }
 
     res.json(user);
@@ -44,13 +52,13 @@ export function getUserById(req: Request, res: Response) {
   }
 }
 
-export function updateUserById(req: Request, res: Response) {
+export function updateUserById(req: Request, res: Response, next) {
   try {
     const userId = parseInt(req.params.id);
     const userIndex = users.findIndex((u) => u.id === userId);
 
     if (userIndex === -1) {
-      return res.status(404).json({ message: "User not found" });
+      return next(new NotFound("not found", "user"));
     }
 
     users[userIndex] = { ...users[userIndex], ...req.body };
