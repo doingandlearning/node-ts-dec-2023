@@ -37,6 +37,7 @@
 
 ## Day 3: Refactor API to have a persistent backend
 
+- Node.js testing
 - Buffers and Streams
 - Error handling
 - Node.js and Databases
