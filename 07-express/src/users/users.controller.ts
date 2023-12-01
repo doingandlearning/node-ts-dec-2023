@@ -1,7 +1,5 @@
 import { Response, Request } from "express";
-import { User } from "./users.model";
-
-const users: User[] = [];
+import UserModel from "./users.model";
 
 export class NotFound extends Error {
   constructor(name: string, public resource: string) {
@@ -9,27 +7,29 @@ export class NotFound extends Error {
   }
 }
 
-export function getAllUsers(req: Request, res: Response) {
+export async function getAllUsers(req: Request, res: Response) {
   try {
-    res.send(users);
+    const allUsers = await UserModel.find();
+    res.send(allUsers);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Something went wrong" });
   }
 }
 
-export function createNewUser(req: Request, res: Response, next) {
+export async function createNewUser(req: Request, res: Response, next) {
   try {
-    const user: User = req.body;
+    const { name, location, role } = req.body;
     // throw Error("Blah");
-    if (!user.location || !user.name) {
+    if (!location || !name) {
       return res
         .status(400)
         .json({ message: "You need to provide a name and location." });
     }
-    user.id = users.length + 1;
-    users.push(user);
-    res.status(201).json(user);
+
+    const newUser = new UserModel({ name, location, role });
+    await newUser.save();
+    res.status(201).json(newUser);
   } catch (error) {
     console.log(error);
     next(error);
@@ -37,9 +37,9 @@ export function createNewUser(req: Request, res: Response, next) {
   }
 }
 
-export function getUserById(req: Request, res: Response, next) {
+export async function getUserById(req: Request, res: Response, next) {
   try {
-    const user = users.find((u) => u.id === parseInt(req.params.id));
+    const user = await UserModel.findById(req.params.id);
 
     if (!user) {
       return next(new NotFound("not found", "user"));
@@ -52,35 +52,30 @@ export function getUserById(req: Request, res: Response, next) {
   }
 }
 
-export function updateUserById(req: Request, res: Response, next) {
+export async function updateUserById(req: Request, res: Response, next) {
   try {
-    const userId = parseInt(req.params.id);
-    const userIndex = users.findIndex((u) => u.id === userId);
+    const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
-    if (userIndex === -1) {
+    if (!user) {
       return next(new NotFound("not found", "user"));
     }
 
-    users[userIndex] = { ...users[userIndex], ...req.body };
-
-    res.json(users[userIndex]);
+    res.json(user);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Something went wrong" });
   }
 }
 
-export function deleteUser(req: Request, res: Response) {
+export async function deleteUser(req: Request, res: Response) {
   try {
-    const userId = parseInt(req.params.id);
-    const userIndex = users.findIndex((u) => u.id === userId);
+    const user = await UserModel.findByIdAndDelete(req.params.id);
 
-    if (userIndex === -1) {
+    if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    users.splice(userId, 1);
-
     res.status(204).send();
   } catch (error) {
     console.log(error);

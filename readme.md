@@ -3,7 +3,7 @@
 - November 29th - December 1st
 - Kevin Cunningham
 - Miro Link: https://miro.com/app/board/uXjVNJrI8fU=/?share_link_id=824970012123
-
+- Feedback link: https://frameworktraining.typeform.com/to/FkVXG55l
 
 # Timings:
 
