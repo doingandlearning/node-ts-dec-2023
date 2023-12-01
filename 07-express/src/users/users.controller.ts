@@ -22,7 +22,7 @@ export function createNewUser(req: Request, res: Response) {
     }
     user.id = users.length + 1;
     users.push(user);
-    res.json(user);
+    res.status(201).json(user);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Something went wrong" });
