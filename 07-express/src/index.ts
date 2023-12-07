@@ -19,3 +19,9 @@ async function startup() {
 }
 
 startup();
+
+// // const name = user?.identification?.primary?.name
+
+// if(!name) {
+
+// }
